@@ -1,0 +1,13 @@
+instruções para abrir os projetos
+
+
+se você for usuário de windows baixe o .exe
+do Python no site ofc https://www.python.org/downloads/windows/
+
+se você for usuario de linux ou mac o Python já vem instalado no sistema.
+
+para iniciar os programas no windows abra a pasta dos programas e de 2 cliques que o programa inicializara automaticamente 
+
+para iniciar os programas no Linux abra seu terminal e digite o caminho para os programas usando o comando 'cd' 
+após chegar ao programa desejado digite 'python3 'nomeDoPrograma.py''
+e aperte enter
