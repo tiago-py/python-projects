@@ -1,2 +1,4 @@
 # python-projects
-Python Projects 
+
+
+some python projects that i have made to study 
