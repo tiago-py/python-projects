@@ -1,19 +1,16 @@
-import random  
+import random 
 
-ia = random.randint(1,10)
+bot = random.randint(1,100)
+print("================")
+print("Bem vindo ao jogo de advinha!! Adivinhe o número que o computador pensou(DE 1 A 100)")
+print("================")
 
-print('A máquina pensou em um número ')
-print('     ')
-
-for i in range(1,11):
-  
-  jogador = int(input('Tente acertar o número que a máquina pensou (numero está entre 1 e 10): '))
-
-  if jogador == ia:
-    print('Acertou!!')
-    exit()
-  elif jogador < ia:
-    print('O número que a máquina pensou é maior que', jogador)
-  else:
-    print('O número que a máquina pensou é menor que', jogador)
-  
+for i in range(10):
+    print("Digite um número:")
+    resp = int(input())
+    if bot > resp:
+        print("Errou, o número é maior!!")
+    elif bot < resp:
+        print("Errou, o número é menor!!")
+    else:
+        print("Acertou")        
