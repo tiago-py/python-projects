@@ -2,7 +2,7 @@ instruções para abrir os projetos
 
 
 se você for usuário de windows baixe o .exe
-do Python no site ofc https://www.python.org/downloads/windows/
+do Python no site oficial do python https://www.python.org/downloads/windows/
 
 se você for usuario de linux ou mac o Python já vem instalado no sistema.
 
