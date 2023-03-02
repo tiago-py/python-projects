@@ -1,5 +1,5 @@
 import os
-
+import time
 
 
 turn = 1 # 1 - Player 1 | 2 - Player 2
