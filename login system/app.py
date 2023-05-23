@@ -68,6 +68,6 @@ while True:
             dbase.write(id, nome, email, senha)
         window.find_element('nome').Update('')
         if button == 'Deletar':
-            if nome:
+            if nome:        
                 x = values['-BOX-'][0]
                 dbase.delete(x)
