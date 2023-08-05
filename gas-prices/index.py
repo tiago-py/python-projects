@@ -50,13 +50,39 @@ df_main.drop(['UNIDADE DE MEDIDA','UNIDADE DE MEDIDA','COEF DE VARIAÇÃO DISTRI
 ,'PRODUTO', 'PREÇO MÉDIO DISTRIBUIÇÃO' ], inplace = True, axis=1)
 
 df_main.info()
+df_store = df_main.to_dict()
 # =========  Layout  =========== #
 app.layout = dbc.Container(children=[
-    
+    #armazenando o dataset
+    dcc.Store(id='dataset', data=df_store),
+    dcc.Store(id='dataset_fixed', data=df_store),
 
-
-
-
+    #layout
+    #row 1 
+    dbc.Row([
+        dbc.Col([
+            dbc.Card([
+                dbc.CardBody([
+                    dbc.Row([
+                        dbc.Col([
+                           html.Legend("Gas Prices Analysis") 
+                        ],sm=8),
+                        dbc.Col([
+                            html.I(className='fa fa-filer', style={'font-size':'300%'})
+                        ],sm=4, align="center")
+                    
+                    ]),
+                    dbc.Row([
+                        dbc.Col([
+                            ThemeSwitchAIO(aio_id="theme", themes=[url_theme1, url_theme2]),
+                            html.Legend("Tiago Braga-Dev")
+                        ],)
+                    ],style={'margin-top':'10px'}),
+                             
+                ])
+            ])
+        ])
+    ])
 ], fluid=True, style={'height': '100%'})
 
 
