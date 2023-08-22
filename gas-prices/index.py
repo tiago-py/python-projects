@@ -283,6 +283,19 @@ app.layout = dbc.Container(children=[
 
 # ======== Callbacks ========== #
 
+@app.callback(
+    Output('static-maxmin','figure'),
+    Input('dataset', 'data'),
+    Input(ThemeSwitchAIO.ids.switch("theme"), "value")
+)
+
+def func(data, toggle):
+    template = template_theme1 if toggle else template_theme2
+    
+    dff = pd.DataFrame(data)
+
+    max = dff.groupby(['ANO'])['VALOR REVENDA (R$/L)'].max()
+    min = dff.groupby(['ANO'])['VALOR REVENDA (R$/L)'].min()
 
 # Run server
 if __name__ == '__main__':
