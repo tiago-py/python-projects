@@ -120,7 +120,7 @@ app.layout = dbc.Container(children=[
                      dbc.Col([
                          html.H3('Máximos e Mínimos'),
                          dcc.Graph(
-                             id='static-maxnin', config={"displayModeBar": False, "showTips": False})
+                             id='static-maxmin', config={"displayModeBar": False, "showTips": False})
                      ])
                      ])
                 ])
@@ -284,7 +284,7 @@ app.layout = dbc.Container(children=[
 # ======== Callbacks ========== #
 
 @app.callback(
-    Output('static-maxmin','figure'),
+    Output('static-maxmin', 'figure'),
     Input('dataset', 'data'),
     Input(ThemeSwitchAIO.ids.switch("theme"), "value")
 )
@@ -296,6 +296,45 @@ def func(data, toggle):
 
     max = dff.groupby(['ANO'])['VALOR REVENDA (R$/L)'].max()
     min = dff.groupby(['ANO'])['VALOR REVENDA (R$/L)'].min()
+
+    final_df = pd.concat([max, min], axis=1)
+    final_df.columns =  ['Máximo','Mínimo']
+
+    fig = px.line(final_df, x=final_df.index, y=final_df.columns, template=template)
+    fig.update_layout(main_config, height=150, xaxis_title = None, yaxis_title = None)
+
+    return fig
+
+@app.callback(
+    Output("card2_indicators", "figure"),
+ [  Input('dataset', 'data'),
+    Input('select_estado2', 'value'),
+    Input(ThemeSwitchAIO.ids.switch("theme"), "value")
+ ]
+)
+
+def card2(data, estado, toggle):
+    template = template_theme1 if toggle else template_theme2
+    
+    dff = pd.DataFrame(data)
+    df_final = dff[dff.ESTADO.isin([estado])]
+
+    data1 =  str(int(dff.ANO.min())-1)
+    data2 = dff.ANO.max()
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Indicator(
+        mode = "number+delta",
+        title = {"text": f"<span style = 'size=60%'>{estado}</span><br><span style = 'font-size:0.7em'>{data1} - {data2}</span>"},
+        value = df_final.at[df_final.index[-1], 'VALOR REVENDA (R$/L)'],
+        number =  {'prefix': "R$", 'valueformat':'.2f'},
+        delta = {'relative': True, 'valueformat': '.1%', 'reference': df_final.at[df_final.index[0], 'VALOR REVENDA (R$/L)'] }
+    ))
+
+    fig.update_layout(main_config, height=250, template = template)
+
+    return fig
 
 # Run server
 if __name__ == '__main__':
