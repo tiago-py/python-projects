@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 from random import randint
 import dbase
+from dbase import mostrarDados
 def janela_cadastro():
     sg.theme('DarkBlue')
     layout = [
