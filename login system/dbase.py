@@ -11,3 +11,6 @@ def write(id, nome, email, senha):
 def delete(x):
         c.execute('''DELETE FROM teste where nome=?''', x)
         con.commit()
+def mostrarDados():
+        c.execute('''SELECT * FROM teste''')
+        con.commit()
