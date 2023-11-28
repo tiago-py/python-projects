@@ -9,5 +9,5 @@ def write(id, nome, email, senha):
         con.commit()
 
 def delete(x):
-        c.execute('''SELECT nome FROM teste where nome=?''', x)
+        c.execute('''DELETE FROM teste where nome=?''', x)
         con.commit()
