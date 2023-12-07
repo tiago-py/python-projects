@@ -35,7 +35,7 @@ def janela_add():
         [sg.Text(f'{e:<12}'), sg.Input(key='email', size=(20, 1))],
         [sg.Text(f'{nas:<4}'), sg.Input(key='senha', size=(20, 1))],
         [sg.Button('Cadastrar Novo Usuário')],
-        [sg.Listbox('Nome', 'Email', 'Senha', size=(50,10), key='-BOX-'), mostrarDados()],
+        [sg.Listbox('Nome', 'Email', 'Senha', size=(50,10), key='-BOX-')],
         [sg.Button('Deletar'), sg.Button('Sair')]
 
     ]
