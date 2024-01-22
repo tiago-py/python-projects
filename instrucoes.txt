@@ -11,3 +11,4 @@ para iniciar os programas no windows abra a pasta dos programas e de 2 cliques q
 para iniciar os programas no Linux abra seu terminal e digite o caminho para os programas usando o comando 'cd' 
 após chegar ao programa desejado digite 'python3 'nomeDoPrograma.py''
 e aperte enter
+caso o projeto tenha um arquivo chamado "requirements.txt" abra seu terminal no windows, mac ou linux e digite  "pip3 install requirements.txt" para windows e  "pip install requirements.txt" para mac e linux
