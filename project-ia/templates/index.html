@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>CHAT-API</title>
+    
 </head>
-<body>
-    <form action="/chat" method="POST">
-        <h1>Digite sua mensagem</h1>
-        <input type="text" name="message">
-
-        <button>ENVIAR</button>
-    </form>
-
-
-    <h4>{{response}}</h4>
+<body class="bg-slate-500">
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-white rounded-lg p-6 shadow-md">
+            <form action="/chat" method="POST" class="text-center">
+                <h1 class="text-xl font-bold mb-4">Digite sua mensagem</h1>
+                <input type="text" name="message" class="border border-gray-300 rounded-md px-4 py-2 mb-4 w-full">
+                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md">ENVIAR</button>
+            </form>
+            <h4 class="mt-4 text-center font-bold">{{response}}</h4>
+        </div>  
+    </div>
+    
+    
 </body>
 </html>
