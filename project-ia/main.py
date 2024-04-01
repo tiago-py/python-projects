@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 app = Flask(__name__)
 model = genai.GenerativeModel('gemini-pro')
-genai.configure(api_key="AIzaSyBA3QkVQEMaEChwoUBbXi9NJCjwfKj0UZc")
+genai.configure(api_key="SUA_CHAVE_API")
 responseUsr = ''
 
 @app.route("/")
