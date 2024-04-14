@@ -1,83 +1,95 @@
-import os 
-import time 
+import os
+import time
 
 carros = [
-('Honda Civic SI',250),
-('Mazda RX-7',400),
-('Lancer EVO X',270),
-('Golf GTI',200),
-('Nissan gtr-r34',350),
-('Silvia s15',450)
+    ('Honda Civic SI', 250),
+    ('Mazda RX-7', 400),
+    ('Lancer EVO X', 270),
+    ('Golf GTI', 200),
+    ('Nissan GTR R34', 350),
+    ('Silvia S15', 450)
 ]
 alugados = []
 
-print("=============")
-print("Bem vindo a nossa locadora")
-print("=============")
-time.sleep(1)
+def mostrar_carros(carros, titulo="Lista de carros disponíveis"):
+    print("\n" + titulo)
+    for i, (nome, valor) in enumerate(carros):
+        print(f"[{i}] {nome} - R$ {valor}/dia")
 
-def mostrarCarros(carros):
-    for i, car in enumerate(carros):
-        print("[{}], {} - R$ {}/dia".format(i, car[0],car[1]))
+def alugar_carro():
+    mostrar_carros(carros)
+    codigo = int(input("Digite o código do carro que deseja alugar: "))
+    dias = int(input("Por quantos dias você quer alugar este carro? "))
+    total = carros[codigo][1] * dias
+    print(f"O valor total do aluguel ficaria em R$ {total}")
+    confirmacao = input(f"Você está prestes a alugar o {carros[codigo][0]} por {dias} dias. Deseja confirmar? (s/n): ").strip().lower()
+    if confirmacao == 's':
+        alugados.append(carros.pop(codigo))
+        print(f"Você alugou {carros[codigo][0]} por {dias} dias. Parabéns!")
+    else:
+        print("Operação cancelada.")
 
+def devolver_carro():
+    if not alugados:
+        print("Não há carros para devolver.")
+    else:
+        mostrar_carros(alugados, "Lista de carros alugados")
+        codigo = int(input("Digite o código do carro que deseja devolver: "))
+        carros.append(alugados.pop(codigo))
+        print("Carro devolvido com sucesso!")
 
-while True:
-   
-            #os.system("cls")
-            print("Escolha o que Deseja fazer: ")
-            print("[0]->Mostrar lista de carros, [1]->Alugar um carro, [2]->Devolver um carro, [3]-> Adicionar um carro, [4]-> Editar um carro [5]->Sair")
-            resp = int(input())
-            if resp == 5:
-                break
-            elif resp == 0:
-                mostrarCarros(carros)
-            
-            elif resp == 1:
-                mostrarCarros(carros)
-                print("Digite o código do carro que deseja alugar: ")
-                codigo = int(input())
-                print("Por quantos dias você quer alugar este carro?")
-                dias = int(input())
-                os.system("cls")
-                print("O valor total do aluguel ficaria em {} reais".format(carros[codigo][1]*dias))
-                print("Você está prestes a alugar o {} por {} dias, deseja confirmar?[0]SIM|[1]NÃO".format(carros[codigo][0],dias))
-                conf = int(input()) 
-                if conf == 0:
-                    print("Você acabou de alugar {} por {} dias, parabéns!!".format(carros[codigo][0],dias))
-                    alugados.append(carros.pop(codigo))
-                else:
-                    print("Voltando ao inicio")
-            elif resp == 2:
-                if len(alugados) < 0:
-                    print("Não há carros para devolver")
-                else:
-                    mostrarCarros(alugados)
-                    print("Digite o codigo do carro que deseja devolver:")
-                    codigo02 = int(input())
-                    print("")
-                    carros.append(alugados.pop(codigo02))
-                    os.system("cls")
-                    print("Obrigado por devolver o carro, volte sempre")
-            elif resp == 3:
-                print("Digite o nome do carro que deseja adicionar:")
-                nome = input()
-                print("Digite o valor do carro que deseja adicionar:")
-                valor = int(input())
-                carros.append((nome,valor))
-            elif resp == 4:
-                mostrarCarros(carros)
-                print("Digite o codigo do carro que deseja editar:")
-                codigo03 = int(input())
-                print("Digite o novo nome do carro:")
-                nome = input()
-                print("Digite o novo valor do carro:")
-                valor = int(input())
-                carros[codigo03] = (nome,valor)
-                print("Carro editado com sucesso")
-            else:
-                print("Opção inválida")
-            print("Deseja continuar? [0]SIM|[1]NÃO")
-            resp02 = int(input())
-            if resp02 == 1:
-                break
-            
+def adicionar_carro():
+    nome = input("Digite o nome do carro que deseja adicionar: ")
+    valor = int(input("Digite o valor do carro que deseja adicionar: "))
+    carros.append((nome, valor))
+    print("Carro adicionado com sucesso!")
+
+def editar_carro():
+    mostrar_carros(carros)
+    codigo = int(input("Digite o código do carro que deseja editar: "))
+    nome = input("Digite o novo nome do carro: ")
+    valor = int(input("Digite o novo valor do carro: "))
+    carros[codigo] = (nome, valor)
+    print("Carro editado com sucesso!")
+
+def menu():
+    print("\nEscolha uma opção:")
+    print("[0] Mostrar lista de carros")
+    print("[1] Alugar um carro")
+    print("[2] Devolver um carro")
+    print("[3] Adicionar um carro")
+    print("[4] Editar um carro")
+    print("[5] Sair")
+    return int(input("Opção: "))
+
+def main():
+    print("=============")
+    print("Bem-vindo à nossa locadora")
+    print("=============")
+    time.sleep(1)
+
+    while True:
+        opcao = menu()
+
+        if opcao == 0:
+            mostrar_carros(carros)
+        elif opcao == 1:
+            alugar_carro()
+        elif opcao == 2:
+            devolver_carro()
+        elif opcao == 3:
+            adicionar_carro()
+        elif opcao == 4:
+            editar_carro()
+        elif opcao == 5:
+            print("Saindo do programa.")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+        continuar = input("Deseja continuar? (s/n): ").strip().lower()
+        if continuar != 's':
+            break
+
+if __name__ == '__main__':
+    main()
