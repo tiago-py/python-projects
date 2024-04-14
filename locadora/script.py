@@ -23,11 +23,11 @@ def mostrarCarros(carros):
 
 while True:
    
-            os.system("cls")
+            #os.system("cls")
             print("Escolha o que Deseja fazer: ")
-            print("[0]->Mostrar lista de carros, [1]->Alugar um carro, [2]->Devolver um carro, [3]->Sair")
+            print("[0]->Mostrar lista de carros, [1]->Alugar um carro, [2]->Devolver um carro, [3]-> Adicionar um carro, [4]-> Editar um carro [5]->Sair")
             resp = int(input())
-            if resp == 3:
+            if resp == 5:
                 break
             elif resp == 0:
                 mostrarCarros(carros)
@@ -58,7 +58,24 @@ while True:
                     carros.append(alugados.pop(codigo02))
                     os.system("cls")
                     print("Obrigado por devolver o carro, volte sempre")
-
+            elif resp == 3:
+                print("Digite o nome do carro que deseja adicionar:")
+                nome = input()
+                print("Digite o valor do carro que deseja adicionar:")
+                valor = int(input())
+                carros.append((nome,valor))
+            elif resp == 4:
+                mostrarCarros(carros)
+                print("Digite o codigo do carro que deseja editar:")
+                codigo03 = int(input())
+                print("Digite o novo nome do carro:")
+                nome = input()
+                print("Digite o novo valor do carro:")
+                valor = int(input())
+                carros[codigo03] = (nome,valor)
+                print("Carro editado com sucesso")
+            else:
+                print("Opção inválida")
             print("Deseja continuar? [0]SIM|[1]NÃO")
             resp02 = int(input())
             if resp02 == 1:
